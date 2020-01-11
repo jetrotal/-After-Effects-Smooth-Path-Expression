@@ -1,8 +1,15 @@
 sourcePath = //Use a path from a shape layer;
-	// Example: thisComp.layer("Shape Layer 1").content("Rectangle 1").content("Path 1").path;
+		// Example: thisComp.layer("Shape Layer 1").content("Rectangle 1").content("Path 1").path;
+
 
 cv = sourcePath.points();
 pathIsClosed = sourcePath.isClosed();
+
+if (!pathIsClosed) {
+    thisLength = cv.length;
+    cv.splice(0, 0, cv[0]);
+    cv.push(cv[thisLength]);
+}
 
 // quadratic curve bezier approximation.
 points = [];
